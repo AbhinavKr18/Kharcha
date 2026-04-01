@@ -548,15 +548,13 @@ const pad2= n => String(n).padStart(2,'0');
 const mKey= (y,m)=> `${y}-${pad2(m+1)}`;
 const fmtD= d => { const [,m,day]=d.split('-'); return `${parseInt(day)} ${MS[parseInt(m)-1]}`; };
 const slugify = s => s.toLowerCase().trim().replace(/[^a-z0-9_]/g,'');
-
-// ── State ─────────────────────────────────────────────────────
-let viewYear=2026, viewMonth=3; // April 2026
+let viewYear=2026, viewMonth=3; // default april coz dep on april
 let expenses=[], budget=0, currentUser=null, username='';
 let db, auth, unsubExp, unsubBudget;
 
-// ── Firebase config (hardcoded) ───────────────────────────────
+// Firebase config (hardcoded)
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyCXSSb9Z19eWJh8J6Mx9DrGXKEv3ojKmqw8Cv9pscK",
+  apiKey: "AIzaSyCXSSb9Z1NWCJJBx3SCz8c2PzqWwj51Bpk",
   authDomain: "kharcha-55fe8.firebaseapp.com",
   projectId: "kharcha-55fe8",
   storageBucket: "kharcha-55fe8.firebasestorage.app",
@@ -566,7 +564,6 @@ const FIREBASE_CONFIG = {
 
 window.showConfig = () => {}; // no-op, config screen removed
 
-// ── Show/hide screens ─────────────────────────────────────────
 const OVERLAY_SCREENS = ['loading','auth-screen','setup-screen'];
 const showOnly = id => {
   OVERLAY_SCREENS.forEach(s => $(s).style.display = s===id ? 'flex' : 'none');
