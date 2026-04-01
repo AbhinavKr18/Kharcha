@@ -34,7 +34,7 @@ body{
 
 /* config screen removed — Firebase config is hardcoded */
 
-/* ── LOADING ──────────────────────────────────────────────── */
+/*Loading */
 #loading{
   position:fixed;inset:0;background:var(--paper);
   display:none;align-items:center;justify-content:center;
@@ -47,7 +47,7 @@ body{
 @keyframes loadAnim{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
 #loading p{font-size:12px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
 
-/* ── AUTH SCREEN ──────────────────────────────────────────── */
+/* Authentication Page*/
 #auth-screen{
   position:fixed;inset:0;
   display:none;align-items:stretch;
@@ -101,7 +101,7 @@ body{
 .auth-err{font-size:12px;color:var(--rust);background:var(--rust-light);padding:9px 12px;border-radius:var(--r);display:none;}
 .auth-err.show{display:block;}
 
-/* ── BUDGET SETUP ─────────────────────────────────────────── */
+/* Budget Setup*/
 #setup-screen{
   position:fixed;inset:0;background:var(--paper);
   display:none;align-items:center;justify-content:center;
@@ -366,8 +366,6 @@ body{
 </head>
 <body>
 
-<!-- config screen removed — Firebase config hardcoded in script -->
-
 <!-- LOADING -->
 <div id="loading">
   <div class="load-logo">kharcha <span>.</span></div>
@@ -537,7 +535,7 @@ import { getFirestore, collection, doc,
          onSnapshot, addDoc, deleteDoc,
          setDoc, getDoc }                       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-// ── Helpers ───────────────────────────────────────────────────
+// Helpers
 const $   = id => document.getElementById(id);
 const MS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const ML  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -645,10 +643,10 @@ window.doLogin = async () => {
   }
 };
 
-// ── Sign out ──────────────────────────────────────────────────
+// Sign out
 window.doLogout = async () => { await signOut(auth); };
 
-// ── Budget setup ──────────────────────────────────────────────
+// Budget setup 
 window.saveBudget = async () => {
   const v = parseFloat($('setup-amount').value);
   if (!v||v<=0){alert('Enter a valid amount.');return;}
@@ -734,7 +732,6 @@ function render(){
   }).join('');
 }
 
-// ── Subscribe to user data ────────────────────────────────────
 function subscribeData(uid){
   unsubBudget&&unsubBudget();
   unsubExp&&unsubExp();
@@ -787,7 +784,6 @@ async function init(cfg){
   }
 }
 
-// ── Keyboard ──────────────────────────────────────────────────
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'){
     if(document.activeElement.closest('.add-row')) addExpense();
@@ -796,10 +792,8 @@ document.addEventListener('keydown',e=>{
   }
 });
 
-// ── Default date ──────────────────────────────────────────────
 $('inp-date').value=new Date().toISOString().split('T')[0];
 
-// ── Boot ──────────────────────────────────────────────────────
 init(FIREBASE_CONFIG);
 </script>
 </body>
